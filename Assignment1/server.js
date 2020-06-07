@@ -29,7 +29,7 @@ const HTTP_PORT = process.env.PORT || 8080;
 // POST /api/sales (NOTE: This route must read the contents of the request body)
 
 app.post("/api/sales",(req,res)=>{
-    myData.addNewSale(req.body).then(msg=>res.json(msg));
+    myData.addNewSale(req.body).then(msg=>res.json({message: msg}));
 })
 
 
@@ -48,14 +48,14 @@ app.get("/api/sales/:id",(req,res)=>{
 // PUT /api/sales (NOTE: This route must accept a numeric route parameter, ie: /api/sales/5bd761dcae323e45a93ccfe8 as well as read the contents of the request body)
 
 app.put("/api/sales/:id",(req,res)=>{
-    myData.updateSaleById(req.body,req.params.id).then(upMsg=>res.json(upMsg)).catch(err=>res.json({message: err}))
+    myData.updateSaleById(req.body,req.params.id).then(upMsg=>res.json({message: upMsg})).catch(err=>res.json({message: err}))
 })
 
 
 // DELETE /api/sales (NOTE: This route must accept a numeric route parameter, ie: /api/sales/5bd761dcae323e45a93ccfe8)
 
 app.delete("/api/sales/:id",(req,res)=>{
-    myData.deleteSaleById(req.params.id).then(deSale=>res.json(deSale)).catch(err=>res.json({message: err}))
+    myData.deleteSaleById(req.params.id).then(deSale=>res.json({message: deSale})).catch(err=>res.json({message: err}))
 })
 
 // ************* Initialize the Service & Start the Server
